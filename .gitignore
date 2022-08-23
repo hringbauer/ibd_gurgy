@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+data/
+output/
+figs/
+cluster/roh/log/
 # C extensions
 *.so
 

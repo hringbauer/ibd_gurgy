@@ -1,0 +1,18 @@
+#!/bin/bash
+### These commands set up the Grid Environment for your job:
+#$ -l h_rt=01:00:00  ### Format HH:MM:SS
+#$ -l h_vmem=25g  # Hard Memory Limit
+#$ -pe smp 3
+#$ -N call_ROH_Gurgy
+#$ -o log/$JOB_ID.$TASK_ID.out  # Custom Output File
+#$ -e log/$JOB_ID.$TASK_ID.err  # Custom Error File
+#$ -t 1-86:1 # :y increments of y; %x: At most x jobs in parallel
+#$ -S /bin/bash #defines bash as the shell for execution
+#$ -V   # Loads all user environment variables and shell functions
+#$ -cwd
+
+### Any extra code follows here (e.g. setting directorys)
+export PATH=/mnt/archgen/projects1/tools_new/bcftools_1.3:$PATH  ### Add bcftools
+
+echo Running Task $SGE_TASK_ID ### Print some output
+python3 call_roh.py $SGE_TASK_ID  ### Run the job
